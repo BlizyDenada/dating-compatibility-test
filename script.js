@@ -189,12 +189,12 @@ const questions = [
         ]
     },
     {
-        question: "How do you feel about having children?",
+        question: "How do you feel about having children or having more children?",
         options: [
-            "I definitely want children.",
+            "I definitely want more children.",
             "I'm open to the idea but not certain.",
-            "I don't want children.",
-            "I'm undecided and need more time to think."
+            "I don't want more children, I'm happy with the children I have.",
+            "I don't want children at all."
         ]
     },
     {
