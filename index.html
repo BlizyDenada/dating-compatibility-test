@@ -5,46 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dating Compatibility Test</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="welcome-screen" class="screen">
-            <h1>Welcome to the Dating Compatibility Test</h1>
-            <p>This test will help you understand your dating style and compatibility with different types of partners.</p>
-            <button onclick="startTest()">Start Test</button>
+    <div id="welcome-screen">
+        <h1>Welcome to the Dating Compatibility Test</h1>
+        <input type="text" id="user-name" placeholder="Enter your name" />
+        <button onclick="startTest()">Start Test</button>
+    </div>
+    <div id="question-screen" style="display:none;">
+        <div id="progress-container">
+            <div id="progress"></div>
         </div>
-
-        <div id="question-screen" class="screen" style="display: none;">
-            <h2 id="question-number">Question 1/50</h2>
-            <p id="question-text">Question text goes here</p>
-            <div id="options">
-                <!-- Options will be inserted here -->
-            </div>
-            <div class="navigation">
-                <button onclick="previousQuestion()">Previous</button>
-                <button onclick="nextQuestion()">Next</button>
-            </div>
-            <div class="progress-bar">
-                <div id="progress" class="progress"></div>
-            </div>
-        </div>
-
-        <div id="summary-screen" class="screen" style="display: none;">
-            <h2>Your Dating Style: <span id="result-label">Label</span></h2>
-            <p>Traits:</p>
-            <ul id="traits-list">
-                <!-- Traits will be inserted here -->
-            </ul>
-            <p>Compatibility:</p>
-            <ul id="compatibility-list">
-                <!-- Compatibility will be inserted here -->
-            </ul>
-            <p>Recommendations:</p>
-            <p id="recommendations">Recommendations go here.</p>
-            <button onclick="retakeTest()">Retake Test</button>
-            <button onclick="downloadPDF()">Download Results as PDF</button>
-        </div>
+        <h2 id="question-number"></h2>
+        <p id="question-text"></p>
+        <div id="options"></div>
+        <button onclick="previousQuestion()">Previous</button>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+    <div id="summary-screen" style="display:none;">
+        <h1 id="result-label"></h1>
+        <p id="user-name-result"></p>
+        <p id="date-time"></p>
+        <h2>Traits:</h2>
+        <ul id="traits-list"></ul>
+        <h2>Best Compatibility:</h2>
+        <ul id="compatibility-list"></ul>
+        <h2>Worst Compatibility:</h2>
+        <ul id="worst-compatibility-list"></ul>
+        <h2>Recommendations:</h2>
+        <p id="recommendations"></p>
+        <button onclick="retakeTest()">Retake Test</button>
+        <p>To save your results, take a screenshot.</p>
     </div>
     <script src="script.js"></script>
 </body>
