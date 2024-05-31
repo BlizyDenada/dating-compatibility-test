@@ -103,4 +103,43 @@ function showSummary() {
         compatibilityList.appendChild(li);
     });
 
-    document.getElementById('recomm
+    document.getElementById('recommendations').innerText = recommendations;
+}
+
+function retakeTest() {
+    currentQuestionIndex = 0;
+    answers = [];
+    document.getElementById('summary-screen').style.display = 'none';
+    document.getElementById('welcome-screen').style.display = 'block';
+}
+
+function finishTest() {
+    alert("Thank you for taking the test!");
+    // Optionally, you can redirect the user or perform other actions
+}
+
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const label = document.getElementById('result-label').innerText;
+    const traits = Array.from(document.getElementById('traits-list').children).map(li => li.innerText);
+    const compatibility = Array.from(document.getElementById('compatibility-list').children).map(li => li.innerText);
+    const recommendations = document.getElementById('recommendations').innerText;
+
+    doc.text("Your Dating Style: " + label, 10, 10);
+    doc.text("Traits:", 10, 20);
+    traits.forEach((trait, index) => {
+        doc.text("- " + trait, 10, 30 + (index * 10));
+    });
+
+    doc.text("Compatibility:", 10, 30 + (traits.length * 10) + 10);
+    compatibility.forEach((comp, index) => {
+        doc.text("- " + comp, 10, 40 + (traits.length * 10) + (index * 10));
+    });
+
+    doc.text("Recommendations:", 10, 50 + (traits.length * 10) + (compatibility.length * 10));
+    doc.text(recommendations, 10, 60 + (traits.length * 10) + (compatibility.length * 10));
+
+    doc.save("Dating_Compatibility_Results.pdf");
+}
