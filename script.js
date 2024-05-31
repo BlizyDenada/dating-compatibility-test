@@ -103,16 +103,4 @@ function showSummary() {
         compatibilityList.appendChild(li);
     });
 
-    document.getElementById('recommendations').innerText = recommendations;
-}
-
-function retakeTest() {
-    currentQuestionIndex = 0;
-    answers = [];
-    document.getElementById('summary-screen').style.display = 'none';
-    document.getElementById('welcome-screen').style.display = 'block';
-}
-
-function finishTest() {
-    alert("Thank you for taking the test!");
-    // Optionally, you can
+    document.getElementById('recomm
