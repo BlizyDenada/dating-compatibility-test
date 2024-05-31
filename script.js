@@ -193,7 +193,7 @@ const questions = [
         options: [
             "I definitely want more children.",
             "I'm open to the idea but not certain.",
-            "I don't want more children, I'm happy with the children I have.",
+            "I already have children and don't want more.",
             "I don't want children at all."
         ]
     },
@@ -524,6 +524,11 @@ function showSummary() {
         { label: "Thinker", percentage: 80 },
         { label: "Adventurer", percentage: 70 }
     ];
+    const worstCompatibility = [
+        { label: "Independent", percentage: 40 },
+        { label: "Non-Committal", percentage: 30 },
+        { label: "Free Spirit", percentage: 20 }
+    ];
     const recommendations = "Focus on finding partners who share your values and commitment to deep emotional connections.";
 
     document.getElementById('result-label').innerText = label;
@@ -541,6 +546,14 @@ function showSummary() {
         const li = document.createElement('li');
         li.innerText = `${item.label}: ${item.percentage}%`;
         compatibilityList.appendChild(li);
+    });
+
+    const worstCompatibilityList = document.getElementById('worst-compatibility-list');
+    worstCompatibilityList.innerHTML = '';
+    worstCompatibility.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = `${item.label}: ${item.percentage}%`;
+        worstCompatibilityList.appendChild(li);
     });
 
     document.getElementById('recommendations').innerText = recommendations;
@@ -565,6 +578,7 @@ function downloadPDF() {
     const label = document.getElementById('result-label').innerText;
     const traits = Array.from(document.getElementById('traits-list').children).map(li => li.innerText);
     const compatibility = Array.from(document.getElementById('compatibility-list').children).map(li => li.innerText);
+    const worstCompatibility = Array.from(document.getElementById('worst-compatibility-list').children).map(li => li.innerText);
     const recommendations = document.getElementById('recommendations').innerText;
 
     doc.text("Your Dating Style: " + label, 10, 10);
@@ -573,13 +587,18 @@ function downloadPDF() {
         doc.text("- " + trait, 10, 30 + (index * 10));
     });
 
-    doc.text("Compatibility:", 10, 30 + (traits.length * 10) + 10);
+    doc.text("Best Compatibility:", 10, 30 + (traits.length * 10) + 10);
     compatibility.forEach((comp, index) => {
         doc.text("- " + comp, 10, 40 + (traits.length * 10) + (index * 10));
     });
 
-    doc.text("Recommendations:", 10, 50 + (traits.length * 10) + (compatibility.length * 10));
-    doc.text(recommendations, 10, 60 + (traits.length * 10) + (compatibility.length * 10));
+    doc.text("Worst Compatibility:", 10, 50 + (traits.length * 10) + (compatibility.length * 10));
+    worstCompatibility.forEach((worstComp, index) => {
+        doc.text("- " + worstComp, 10, 60 + (traits.length * 10) + (compatibility.length * 10) + (index * 10));
+    });
+
+    doc.text("Recommendations:", 10, 70 + (traits.length * 10) + (compatibility.length * 10) + (worstCompatibility.length * 10));
+    doc.text(recommendations, 10, 80 + (traits.length * 10) + (compatibility.length * 10) + (worstCompatibility.length * 10));
 
     doc.save("Dating_Compatibility_Results.pdf");
 }
