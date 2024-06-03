@@ -1,51 +1,31 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+let currentQuestionIndex = 0;
+let answers = [];
+let userName = '';
+
+function startTest() {
+    userName = document.getElementById('user-name').value;
+    if (userName.trim() === '') {
+        alert('Please enter your name.');
+        return;
+    }
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('question-screen').style.display = 'block';
+    showQuestion();
 }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+    document.getElementById('question-text').innerText = question.question;
 
-.screen {
-    text-align: center;
-}
+    const optionsDiv = document.getElementById('options');
+    optionsDiv.innerHTML = '';
+    question.options.forEach((option, index) => {
+        const optionButton = document.createElement('button');
+        optionButton.innerText = option;
+        optionButton.onclick = () => selectOption(index);
+        optionsDiv.appendChild(optionButton);
+    });
 
-.navigation {
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.progress-bar {
-    width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.progress {
-    height: 20px;
-    background-color: #007bff;
-    width: 0;
+    document.getElementById('progress').style.width = `${(currentQuestionIndex + 1) / questions.length * 100}%`;
 }
