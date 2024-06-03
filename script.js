@@ -905,6 +905,17 @@ function showQuestion() {
 function selectOption(index) {
     answers[currentQuestionIndex] = index;
     const question = questions[currentQuestionIndex];
+
+    console.log("Current Question Index: ", currentQuestionIndex);
+    console.log("Selected Option Index: ", index);
+    console.log("Question: ", question);
+    console.log("Scores: ", question.scores);
+
+    if (!question.scores || question.scores.length !== question.options.length) {
+        console.error("Scores array is missing or does not match the number of options for question:", question);
+        return;
+    }
+
     question.scores.forEach((score, scoreIndex) => {
         if (scoreIndex === index) {
             const label = labels.find(label => label.name === score.label);
@@ -915,6 +926,7 @@ function selectOption(index) {
             }
         }
     });
+
     if (currentQuestionIndex < questions.length - 1) {
         nextQuestion();
     } else {
