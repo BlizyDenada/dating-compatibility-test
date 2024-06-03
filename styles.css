@@ -1,31 +1,32 @@
-let currentQuestionIndex = 0;
-let answers = [];
-let userName = '';
+/* Add your styles here */
 
-function startTest() {
-    userName = document.getElementById('user-name').value;
-    if (userName.trim() === '') {
-        alert('Please enter your name.');
-        return;
-    }
-    document.getElementById('welcome-screen').style.display = 'none';
-    document.getElementById('question-screen').style.display = 'block';
-    showQuestion();
+body {
+    font-family: Arial, sans-serif;
 }
 
-function showQuestion() {
-    const question = questions[currentQuestionIndex];
-    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-    document.getElementById('question-text').innerText = question.question;
+#progress-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    margin-bottom: 20px;
+}
 
-    const optionsDiv = document.getElementById('options');
-    optionsDiv.innerHTML = '';
-    question.options.forEach((option, index) => {
-        const optionButton = document.createElement('button');
-        optionButton.innerText = option;
-        optionButton.onclick = () => selectOption(index);
-        optionsDiv.appendChild(optionButton);
-    });
+#progress {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0%;
+}
 
-    document.getElementById('progress').style.width = `${(currentQuestionIndex + 1) / questions.length * 100}%`;
+#options button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#options button:hover {
+    background-color: #0056b3;
 }
