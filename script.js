@@ -907,7 +907,12 @@ function selectOption(index) {
     const question = questions[currentQuestionIndex];
     question.scores.forEach((score, scoreIndex) => {
         if (scoreIndex === index) {
-            labels.find(label => label.name === score.label).points += score.points;
+            const label = labels.find(label => label.name === score.label);
+            if (label) {
+                label.points += score.points;
+            } else {
+                console.error(`Label not found for: ${score.label}`);
+            }
         }
     });
     if (currentQuestionIndex < questions.length - 1) {
