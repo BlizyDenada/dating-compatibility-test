@@ -29,7 +29,7 @@ const questions = [
         scores: [
             { label: "Collaborative", points: 2 },
             { label: "Independent", points: 1 },
-            { label: "Independent", points: 1 },
+            { label: "Independent", points: -1 },
             { label: "Controlling", points: -2 }
         ]
     },
