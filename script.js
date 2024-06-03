@@ -29,7 +29,7 @@ const questions = [
         scores: [
             { label: "Collaborative", points: 2 },
             { label: "Independent", points: 1 },
-            { label: "Independent", points: -1 },
+            { label: "Independent", points: 1 },
             { label: "Controlling", points: -2 }
         ]
     },
@@ -850,7 +850,7 @@ const labels = [
     { name: "The Caregiver", points: 0 },
     { name: "The Adventurer", points: 0 },
     { name: "The Thinker", points: 0 },
-    { name: "The Independent", points: 0 },
+        { name: "The Independent", points: 0 },
     { name: "The Non-Committal", points: 0 },
     { name: "The Free Spirit", points: 0 },
     { name: "Supportive", points: 0 },
@@ -871,8 +871,14 @@ const labels = [
     { name: "Mediator", points: 0 },
     { name: "Dependent", points: 0 },
     { name: "Detached", points: 0 },
-    { name: "Indecisive", points: 0 }
+    { name: "Indecisive", points: 0 },
+    { name: "Collaborative", points: 0 },
+    { name: "Controlling", points: 0 },
+    { name: "Active", points: 0 },
+    { name: "Socialite", points: 0 },
+    { name: "Homebody", points: 0 }
 ];
+
 
 function startTest() {
     userName = document.getElementById('user-name').value;
